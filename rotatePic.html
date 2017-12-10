@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        ul{
+            list-style: none;
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 200px auto;
+
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .ul > li{
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            left: 0px;
+            top:0px;
+        }
+        .ul >li img{
+            width: 100%;
+            height: 100%;
+        }
+        .ul >li:first-child{
+            z-index: 2;
+        }
+        .button{
+            width: 50px;
+            height: 30px;
+            border:1px solid red;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            font-size: 12px;
+            background-color: #dddddd;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+
+<ul class="ul">
+    <li>
+        <img src="3d照片墙图片/img/img11.jpg">
+    </li>
+    <li>
+        <img src="3d照片墙图片/img/img12.jpg">
+    </li>
+    <li>
+        <img src="3d照片墙图片/img/img13.jpg">
+    </li>
+    <li>
+        <img src="3d照片墙图片/img/img14.jpg">
+    </li>
+    <li>
+        <img src="3d照片墙图片/img/img15.jpg">
+    </li>
+    <li>
+        <img src="3d照片墙图片/img/img16.jpg">
+    </li>
+    <li>
+        <img src="3d照片墙图片/img/img17.jpg">
+    </li>
+    <li>
+        <img src="3d照片墙图片/img/img18.jpg">
+    </li>
+    <li>
+        <img src="3d照片墙图片/img/img19.jpg">
+    </li>
+    <li>
+        <img src="3d照片墙图片/img/img20.jpg">
+    </li>
+    <li>
+        <img src="3d照片墙图片/img/img21.jpg">
+    </li>
+</ul>
+
+<div class="button">
+    按钮
+</div>
+<script type="text/javascript" src="js/jquery-1.10.1.js"></script>
+<script type="text/javascript">
+  $(function () {
+      var $li = $('.ul > li');
+      var len = $li.length;
+      for(var i = 0; i < len; i++){
+          $li.eq(i).css({ // 每一张都比之前一张多旋转40度
+             'transform': 'rotateY('+ (360/len*i)+'deg) translateZ(-500px)'
+          })
+      }
+      var index = 0;
+      $('.button').on('click',function () {
+          index = index + 1;
+          for(var i = 0; i < len; i++){
+              $li.eq(i).css({  // 第一张图默认0，点一下40,80,12...
+                  'transform': 'rotateY('+ (360/len*i+(360/len)*index)+'deg) translateZ(-500px)',
+                  'transition' : '2s'
+              })
+          }
+      })
+  })
+</script>
+</body>
+</html>
